@@ -1,5 +1,4 @@
 const IMPORTANT_LINKS = [
-  { label: "CET PG Portal", icon: "🏫", url: "https://cetpgex.iitp.ac.in/index.php" },
   { label: "Academic Calendar", icon: "📅", url: "https://cetpgex.iitp.ac.in/index.php/academics/academic-calendar" },
   { label: "Time Table", icon: "🕐", url: "https://cetpgex.iitp.ac.in/index.php/academics/time-table" },
   { label: "Course Details", icon: "📖", url: "https://cetpgex.iitp.ac.in/index.php/academics/course-details" },
