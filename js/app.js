@@ -25,31 +25,16 @@ function effectiveCourse(scheduleItem) {
   return getCourse("aml");
 }
 
-function getMeetingUrl(course, item) {
-  if (course.sessionLinks?.length) {
-    return course.sessionLinks.find(link => link.lab === !!item.lab)?.url;
-  }
-  return course.classUrl;
-}
-
-function renderRecordingButton(course) {
-  if (!course.recordingUrl) return "";
-
-  return `<a class="join-btn recording" target="_blank" rel="noopener" href="${course.recordingUrl}">View Recordings</a>`;
+// Attendance is only recorded when classes/recordings are accessed via Moodle,
+// so every "join" action routes to the course's Moodle page.
+function getMeetingUrl(course) {
+  return course.moodleUrl;
 }
 
 function renderCourseLinks(course) {
-  let teamsLinks = "";
+  if (!course.moodleUrl) return "";
 
-  if (course.sessionLinks?.length) {
-    teamsLinks = course.sessionLinks.map((link, index) => `
-      <a class="join-btn${index > 0 ? " alt" : ""}" target="_blank" rel="noopener" href="${link.url}">${link.label}</a>
-    `).join("");
-  } else if (course.classUrl) {
-    teamsLinks = `<a class="join-btn" target="_blank" rel="noopener" href="${course.classUrl}">Join on Teams</a>`;
-  }
-
-  return `${teamsLinks}${renderRecordingButton(course)}`;
+  return `<a class="join-btn" target="_blank" rel="noopener" href="${course.moodleUrl}">Join on Moodle</a>`;
 }
 
 function renderImportantLinks() {
@@ -130,7 +115,7 @@ function renderTimetable() {
       `;
 
       slot.addEventListener("click", () => {
-        const url = getMeetingUrl(course, item);
+        const url = getMeetingUrl(course);
         if (url) window.open(url, "_blank", "noopener,noreferrer");
       });
 
