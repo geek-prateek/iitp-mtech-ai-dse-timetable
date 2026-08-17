@@ -1,5 +1,5 @@
 const IMPORTANT_LINKS = [
-  { label: "Academic Calendar", icon: "📅", url: "https://cetpgex.iitp.ac.in/index.php/academics/academic-calendar" },
+  { label: "Academic Calendar", icon: "📅", url: "https://cetpgex.iitp.ac.in/images/pdf/Academic%20Calendar/AC%20PG%20Autumn%2026.pdf" },
   { label: "Time Table", icon: "🕐", url: "https://cetpgex.iitp.ac.in/index.php/academics/time-table" },
   { label: "Course Details", icon: "📖", url: "https://cetpgex.iitp.ac.in/index.php/academics/course-details" },
   { label: "Exam Schedule", icon: "📝", url: "https://cetpgex.iitp.ac.in/index.php/academics/examination-schedule" },
@@ -82,7 +82,7 @@ const SCHEDULE = [
   { day:"Saturday", time:"8:00 AM – 9:30 AM", course:"daa", lab:false },
   { day:"Saturday", time:"9:30 AM – 11:00 AM", course:"elective-slot", lab:false },
   { day:"Saturday", time:"11:30 AM – 1:00 PM", course:"cda", lab:false },
-  { day:"Saturday", time:"7:30 PM – 9:30 PM", course:"fcs", lab:false },
+  { day:"Saturday", time:"7:30 PM – 9:30 PM", course:"fcs", lab:false, showLabTag: true },
 
   { day:"Sunday", time:"8:00 AM – 9:30 AM", course:"daa", lab:false },
   { day:"Sunday", time:"9:30 AM – 11:00 AM", course:"pr", lab:false },
