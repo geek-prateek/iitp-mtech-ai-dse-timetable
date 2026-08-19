@@ -10,8 +10,16 @@ const todayTitleEl = document.getElementById("todayTitle");
 const todayClassesEl = document.getElementById("todayClasses");
 const electiveSelectEl = document.getElementById("electiveSelect");
 const programSelectEl = document.getElementById("programSelect");
+const programTitleEl = document.getElementById("programTitle");
 
 programSelectEl.value = selectedProgram;
+
+function syncProgramTitle() {
+  programTitleEl.textContent =
+    programSelectEl.options[programSelectEl.selectedIndex].textContent;
+}
+
+syncProgramTitle();
 
 function getActiveCourses() {
   return selectedProgram === "cc" ? CC_COURSES : COURSES;
@@ -240,6 +248,7 @@ electiveSelectEl.addEventListener("change", (event) => {
 
 programSelectEl.addEventListener("change", (event) => {
   selectedProgram = event.target.value;
+  syncProgramTitle();
   localStorage.setItem("iitp-program", selectedProgram);
   selectedElective =
     localStorage.getItem(`iitp-${selectedProgram}-elective`) ||
