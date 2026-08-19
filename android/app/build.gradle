@@ -1,0 +1,43 @@
+plugins {
+    id "com.android.application"
+}
+
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+if (keystorePropertiesFile.exists()) {
+    keystorePropertiesFile.withInputStream { keystoreProperties.load(it) }
+}
+
+android {
+    namespace "com.iitp.aidsetimetable"
+    compileSdk 35
+
+    defaultConfig {
+        applicationId "com.iitp.aidsetimetable"
+        minSdk 23
+        targetSdk 35
+        versionCode 2
+        versionName "1.1"
+    }
+
+    signingConfigs {
+        release {
+            storeFile rootProject.file(keystoreProperties["storeFile"])
+            storePassword keystoreProperties["storePassword"]
+            keyAlias keystoreProperties["keyAlias"]
+            keyPassword keystoreProperties["keyPassword"]
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+        }
+    }
+
+    applicationVariants.configureEach { variant ->
+        variant.outputs.configureEach {
+            outputFileName = "IITP-AI-DSE-Timetable-${variant.buildType.name}-v${variant.versionName}.apk"
+        }
+    }
+}

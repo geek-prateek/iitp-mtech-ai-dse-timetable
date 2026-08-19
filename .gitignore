@@ -1,0 +1,6 @@
+android/keystore.properties
+android/app/iitp-ai-dse-release-key.jks
+android/.gradle/
+android/build/
+android/app/build/
+node_modules/

@@ -1,0 +1,20 @@
+{
+  "name": "iitp-mtech-ai-dse-timetable",
+  "version": "1.1.0",
+  "private": true,
+  "description": "IIT Patna M.Tech AI & DSE timetable web dashboard and Android WebView app.",
+  "scripts": {
+    "android:sync": "node scripts/sync-android-assets.cjs",
+    "android:build": "npm run android:sync && node scripts/android-gradle.cjs assembleDebug",
+    "android:install": "npm run android:sync && node scripts/android-gradle.cjs installDebug",
+    "android:uninstall": "node scripts/android-adb.cjs uninstall com.iitp.aidsetimetable",
+    "android:reinstall": "node scripts/android-reinstall.cjs",
+    "android:local": "npm run android:reinstall",
+    "android:release:local": "npm run android:sync && node scripts/android-gradle.cjs assembleRelease",
+    "build": "npm run android:build",
+    "build:android": "npm run android:build",
+    "install:android": "npm run android:install",
+    "release:local": "npm run android:release:local"
+  },
+  "devDependencies": {}
+}
