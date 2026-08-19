@@ -1,16 +1,54 @@
 let currentFilter = "all";
-let selectedElective = localStorage.getItem("iitp-ai-dse-elective") || "Computational Data Analysis";
+let selectedProgram = localStorage.getItem("iitp-program") || "aidse";
+let selectedElective =
+  localStorage.getItem(`iitp-${selectedProgram}-elective`) ||
+  "Computational Data Analysis";
 
 const timetableEl = document.getElementById("timetable");
 const courseGridEl = document.getElementById("courseGrid");
 const todayTitleEl = document.getElementById("todayTitle");
 const todayClassesEl = document.getElementById("todayClasses");
 const electiveSelectEl = document.getElementById("electiveSelect");
+const programSelectEl = document.getElementById("programSelect");
+const programTitleEl = document.getElementById("programTitle");
 
-electiveSelectEl.value = selectedElective;
+programSelectEl.value = selectedProgram;
+
+function syncProgramTitle() {
+  programTitleEl.textContent =
+    programSelectEl.options[programSelectEl.selectedIndex].textContent;
+}
+
+syncProgramTitle();
+
+function getActiveCourses() {
+  return selectedProgram === "cc" ? CC_COURSES : COURSES;
+}
+
+function getActiveSchedule() {
+  return selectedProgram === "cc" ? CC_SCHEDULE : SCHEDULE;
+}
+
+function getElectiveNames() {
+  return getActiveCourses()
+    .filter((course) => course.type === "elective")
+    .map((course) => course.name);
+}
+
+function syncElectiveSelector() {
+  const electiveNames = getElectiveNames();
+  if (!electiveNames.includes(selectedElective)) {
+    selectedElective = electiveNames[0];
+  }
+
+  electiveSelectEl.innerHTML = electiveNames
+    .map((name) => `<option value="${name}">${name}</option>`)
+    .join("");
+  electiveSelectEl.value = selectedElective;
+}
 
 function getCourse(id) {
-  return COURSES.find(course => course.id === id);
+  return getActiveCourses().find((course) => course.id === id);
 }
 
 function getToday() {
@@ -18,11 +56,10 @@ function getToday() {
 }
 
 function effectiveCourse(scheduleItem) {
-  if (scheduleItem.course !== "elective-slot") return getCourse(scheduleItem.course);
+  if (scheduleItem.course !== "elective-slot")
+    return getCourse(scheduleItem.course);
 
-  if (selectedElective === "Computational Data Analysis") return getCourse("cda");
-  if (selectedElective === "Pattern Recognition") return getCourse("pr");
-  return getCourse("aml");
+  return getActiveCourses().find((course) => course.name === selectedElective);
 }
 
 // Attendance is only recorded when classes/recordings are accessed via Moodle,
@@ -41,12 +78,14 @@ function renderImportantLinks() {
   const grid = document.getElementById("importantLinksGrid");
   if (!grid) return;
 
-  grid.innerHTML = IMPORTANT_LINKS.map(link => `
+  grid.innerHTML = IMPORTANT_LINKS.map(
+    (link) => `
     <a class="important-link-card" href="${link.url}" target="_blank" rel="noopener noreferrer">
       <span class="important-link-icon" aria-hidden="true">${link.icon}</span>
       <span class="important-link-label">${link.label}</span>
     </a>
-  `).join("");
+  `,
+  ).join("");
 }
 
 function renderTimetable() {
@@ -59,22 +98,22 @@ function renderTimetable() {
 
   const today = getToday();
 
-  DAYS.forEach(day => {
+  DAYS.forEach((day) => {
     const header = document.createElement("div");
     header.className = `grid-head ${day === today ? "today" : ""}`;
     header.textContent = day;
     timetableEl.appendChild(header);
   });
 
-  TIMES.forEach(time => {
+  TIMES.forEach((time) => {
     const timeEl = document.createElement("div");
     timeEl.className = "time-head";
     timeEl.textContent = time;
     timetableEl.appendChild(timeEl);
 
-    DAYS.forEach(day => {
+    DAYS.forEach((day) => {
       const slot = document.createElement("div");
-    
+
       // Friday is a full-day leave.
       if (day === "Friday") {
         slot.className = "slot leave";
@@ -82,9 +121,11 @@ function renderTimetable() {
         timetableEl.appendChild(slot);
         return;
       }
-    
-      const item = SCHEDULE.find(s => s.day === day && s.time === time);
-    
+
+      const item = getActiveSchedule().find(
+        (s) => s.day === day && s.time === time,
+      );
+
       if (!item) {
         slot.className = "slot empty";
         slot.textContent = "—";
@@ -111,7 +152,7 @@ function renderTimetable() {
         <div class="slot-title">${course.shortName}</div>
         <div class="slot-code">${course.code}</div>
         <div class="slot-time">${item.time}</div>
-        ${item.showLabTag ? '<span class="badge">Lab</span>' : ''}
+        ${item.showLabTag ? '<span class="badge">Lab</span>' : ""}
       `;
 
       slot.addEventListener("click", () => {
@@ -127,7 +168,7 @@ function renderTimetable() {
 function renderCourses() {
   courseGridEl.innerHTML = "";
 
-  COURSES.forEach(course => {
+  getActiveCourses().forEach((course) => {
     const card = document.createElement("article");
     card.className = `course-card ${course.type}`;
 
@@ -149,59 +190,88 @@ function renderToday() {
   todayTitleEl.textContent = today;
 
   // Friday is a full-day leave.
-if (today === "Friday") {
-  todayClassesEl.innerHTML = `
+  if (today === "Friday") {
+    todayClassesEl.innerHTML = `
     <div class="today-item">
       <strong>Full Day Leave</strong>
       <span>No classes scheduled</span>
     </div>
   `;
-  return;
-}
+    return;
+  }
 
-  const todaySchedule = SCHEDULE
-    .filter(item => item.day === today)
-    .map(item => ({ item, course: effectiveCourse(item) }));
+  const todaySchedule = getActiveSchedule()
+    .filter((item) => item.day === today)
+    .map((item) => ({ item, course: effectiveCourse(item) }));
 
   if (!todaySchedule.length) {
     todayClassesEl.innerHTML = `<div class="muted">No classes scheduled today.</div>`;
     return;
   }
 
-  todayClassesEl.innerHTML = todaySchedule.map(({ item, course }) => `
+  todayClassesEl.innerHTML = todaySchedule
+    .map(
+      ({ item, course }) => `
     <div class="today-item">
       <strong>${item.time}</strong>
       <span>${course.shortName}${item.showLabTag ? " · Lab" : ""}</span>
     </div>
-  `).join("");
+  `,
+    )
+    .join("");
 }
 
 function renderAll() {
+  syncElectiveSelector();
   renderImportantLinks();
   renderTimetable();
   renderCourses();
   renderToday();
 }
 
-document.querySelectorAll("[data-filter]").forEach(button => {
+document.querySelectorAll("[data-filter]").forEach((button) => {
   button.addEventListener("click", () => {
     currentFilter = button.dataset.filter;
-    document.querySelectorAll("[data-filter]").forEach(btn => btn.classList.remove("active"));
+    document
+      .querySelectorAll("[data-filter]")
+      .forEach((btn) => btn.classList.remove("active"));
     button.classList.add("active");
     renderTimetable();
   });
 });
 
-electiveSelectEl.addEventListener("change", event => {
+electiveSelectEl.addEventListener("change", (event) => {
   selectedElective = event.target.value;
-  localStorage.setItem("iitp-ai-dse-elective", selectedElective);
+  localStorage.setItem(`iitp-${selectedProgram}-elective`, selectedElective);
+  renderAll();
+});
+
+programSelectEl.addEventListener("change", (event) => {
+  selectedProgram = event.target.value;
+  syncProgramTitle();
+  localStorage.setItem("iitp-program", selectedProgram);
+  selectedElective =
+    localStorage.getItem(`iitp-${selectedProgram}-elective`) ||
+    getElectiveNames()[0];
+  currentFilter = "all";
+  document
+    .querySelectorAll("[data-filter]")
+    .forEach((button) => button.classList.remove("active"));
+  document.querySelector('[data-filter="all"]').classList.add("active");
   renderAll();
 });
 
 document.getElementById("todayBtn").addEventListener("click", () => {
   const today = getToday();
-  const header = [...document.querySelectorAll(".grid-head")].find(el => el.textContent === today);
-  if (header) header.scrollIntoView({ behavior: "smooth", inline: "center", block: "start" });
+  const header = [...document.querySelectorAll(".grid-head")].find(
+    (el) => el.textContent === today,
+  );
+  if (header)
+    header.scrollIntoView({
+      behavior: "smooth",
+      inline: "center",
+      block: "start",
+    });
 });
 
 document.querySelector('[data-filter="all"]').classList.add("active");

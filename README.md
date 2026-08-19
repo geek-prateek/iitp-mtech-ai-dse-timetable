@@ -1,15 +1,17 @@
 # IIT Patna — M.Tech AI & DSE Timetable
 
-Public timetable dashboard for the IIT Patna M.Tech 2026–27 batch, Specialization in Artificial Intelligence & Data Science and Engineering (AI & DSE), Semester 1.
+Public timetable dashboard for IIT Patna M.Tech 2026–27 Semester 1 students in Artificial Intelligence & Data Science and Engineering (AI & DSE) and Cloud Computing.
 
 ## Features
 
 - Weekly timetable from Monday to Sunday
+- Program selector for AI & DSE and Cloud Computing
 - Light blue for regular courses
 - Light yellow for elective courses
-- One-click Microsoft Teams links
+- One-click course links
 - Separate class/lab links where available
 - Elective selector with localStorage persistence
+- Program and elective selections persist independently in localStorage
 - Today view
 - Regular / elective filters
 - Responsive mobile layout
