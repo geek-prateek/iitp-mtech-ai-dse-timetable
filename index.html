@@ -1,111 +1,152 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#0f3d91" />
-  <meta name="description" content="IIT Patna M.Tech AI & DSE 2026-27 Semester 1 class timetable and Microsoft Teams links." />
-  <title>IIT Patna — M.Tech AI & DSE | 2026-27</title>
-  <link rel="stylesheet" href="css/style.css" />
-</head>
-<body>
-  <header class="hero">
-    <div class="container hero-content">
-      <a class="brand-lockup" href="https://cetpgex.iitp.ac.in/index.php" target="_blank" rel="noopener noreferrer" aria-label="IIT Patna CET PG Portal">
-        <img class="brand-seal" src="assets/iitp-seal.png" alt="IIT Patna" width="64" height="64" />
-      </a>
-      <div class="hero-text">
-        <p class="eyebrow">IIT Patna · CET PG</p>
-        <h1>M.Tech AI &amp; DSE</h1>
-        <p class="subtitle">2026–27 · Semester 1</p>
-      </div>
-    </div>
-  </header>
-
-  <main class="container">
-    <section class="topbar">
-      <div>
-        <h2>Weekly Timetable</h2>
-      </div>
-      <div class="actions">
-        <button id="todayBtn" class="btn primary">Today</button>
-        <button class="btn" data-filter="all">All</button>
-        <button class="btn" data-filter="regular">Regular</button>
-        <button class="btn elective-filter" data-filter="elective">Elective</button>
-      </div>
-    </section>
-    <details class="important-links-section collapse-panel">
-      <summary class="collapse-summary">
-        <div>
-          <p class="panel-label">Official Portal</p>
-          <h2>Important Links</h2>
-        </div>
-        <span class="collapse-hint">Tap to expand</span>
-      </summary>
-      <p class="muted collapse-note">Quick access from the <a class="inline-link" href="https://cetpgex.iitp.ac.in/index.php" target="_blank" rel="noopener noreferrer">CET PG portal</a>.</p>
-      <div class="important-links-grid" id="importantLinksGrid"></div>
-    </details>
-    
-
-    <div class="legend">
-      <span><i class="legend-dot regular"></i> Regular course</span>
-      <span><i class="legend-dot elective"></i> Elective course</span>
-      <span><i class="legend-dot lab"></i> Lab</span>
-    </div>
-
-    <section class="today-card" id="todayCard">
-      <div>
-        <p class="panel-label">Today</p>
-        <h3 id="todayTitle">Loading...</h3>
-      </div>
-      <div id="todayClasses" class="today-classes"></div>
-    </section>
-
-    <section class="elective-panel">
-      <div>
-        <p class="panel-label">Your elective</p>
-        <h3>Select one elective to personalize your timetable</h3>
-        <p class="muted">Regular courses are always shown. Your selected elective is highlighted.</p>
-      </div>
-      <select id="electiveSelect" aria-label="Select your elective">
-        <option value="Computational Data Analysis">Computational Data Analysis</option>
-        <option value="Pattern Recognition">Pattern Recognition</option>
-        <option value="Advanced Machine Learning">Advanced Machine Learning</option>
-      </select>
-    </section>
-    <section class="table-wrap">
-      <div class="timetable" id="timetable"></div>
-    </section>
-
-    <section class="courses-section">
-      <div class="section-heading">
-        <div>
-          <p class="panel-label">Quick Access</p>
-          <h2>Course Links</h2>
-        </div>
-      </div>
-      <div class="course-grid" id="courseGrid"></div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container footer-inner">
-      <span>IIT Patna · M.Tech AI &amp; DSE · 2026–27</span>
-      <span>
-        <strong>NGVP</strong> ·
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0f3d91" />
+    <meta
+      name="description"
+      content="IIT Patna M.Tech AI & DSE 2026-27 Semester 1 class timetable and Microsoft Teams links."
+    />
+    <title>IIT Patna — M.Tech AI & DSE | 2026-27</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="container hero-content">
         <a
-          class="inline-link"
-          href="https://aws-portfolio-chi.vercel.app/"
+          class="brand-lockup"
+          href="https://cetpgex.iitp.ac.in/index.php"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="IIT Patna CET PG Portal"
         >
-          Maintained by Prateek
+          <img
+            class="brand-seal"
+            src="assets/iitp-seal.png"
+            alt="IIT Patna"
+            width="64"
+            height="64"
+          />
         </a>
-      </span>
-    </div>
-  </footer>
+        <div class="hero-text">
+          <p class="eyebrow">IIT Patna · CET PG</p>
+          <h1>M.Tech AI &amp; DSE</h1>
+          <p class="subtitle">2026–27 · Semester 1</p>
+        </div>
+      </div>
+    </header>
 
-  <script src="js/courses.js"></script>
-  <script src="js/app.js"></script>
-</body>
+    <main class="container">
+      <section class="topbar">
+        <div>
+          <h2>Weekly Timetable</h2>
+        </div>
+        <div class="actions">
+          <label class="select-label" for="programSelect">Program</label>
+          <select
+            id="programSelect"
+            class="toolbar-select"
+            aria-label="Select your program"
+          >
+            <option value="aidse">M.Tech AI &amp; DSE</option>
+            <option value="cc">M.Tech Cloud Computing</option>
+          </select>
+          <button id="todayBtn" class="btn primary">Today</button>
+          <button class="btn" data-filter="all">All</button>
+          <button class="btn" data-filter="regular">Regular</button>
+          <button class="btn elective-filter" data-filter="elective">
+            Elective
+          </button>
+        </div>
+      </section>
+      <details class="important-links-section collapse-panel">
+        <summary class="collapse-summary">
+          <div>
+            <p class="panel-label">Official Portal</p>
+            <h2>Important Links</h2>
+          </div>
+          <span class="collapse-hint">Tap to expand</span>
+        </summary>
+        <p class="muted collapse-note">
+          Quick access from the
+          <a
+            class="inline-link"
+            href="https://cetpgex.iitp.ac.in/index.php"
+            target="_blank"
+            rel="noopener noreferrer"
+            >CET PG portal</a
+          >.
+        </p>
+        <div class="important-links-grid" id="importantLinksGrid"></div>
+      </details>
+
+      <div class="legend">
+        <span><i class="legend-dot regular"></i> Regular course</span>
+        <span><i class="legend-dot elective"></i> Elective course</span>
+        <span><i class="legend-dot lab"></i> Lab</span>
+      </div>
+
+      <section class="today-card" id="todayCard">
+        <div>
+          <p class="panel-label">Today</p>
+          <h3 id="todayTitle">Loading...</h3>
+        </div>
+        <div id="todayClasses" class="today-classes"></div>
+      </section>
+
+      <section class="elective-panel">
+        <div>
+          <p class="panel-label">Your elective</p>
+          <h3>Select one elective to personalize your timetable</h3>
+          <p class="muted">
+            Regular courses are always shown. Your selected elective is
+            highlighted.
+          </p>
+        </div>
+        <select id="electiveSelect" aria-label="Select your elective">
+          <option value="Computational Data Analysis">
+            Computational Data Analysis
+          </option>
+          <option value="Pattern Recognition">Pattern Recognition</option>
+          <option value="Advanced Machine Learning">
+            Advanced Machine Learning
+          </option>
+        </select>
+      </section>
+      <section class="table-wrap">
+        <div class="timetable" id="timetable"></div>
+      </section>
+
+      <section class="courses-section">
+        <div class="section-heading">
+          <div>
+            <p class="panel-label">Quick Access</p>
+            <h2>Course Links</h2>
+          </div>
+        </div>
+        <div class="course-grid" id="courseGrid"></div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-inner">
+        <span>IIT Patna · M.Tech AI &amp; DSE · 2026–27</span>
+        <span>
+          <strong>NGVP</strong> ·
+          <a
+            class="inline-link"
+            href="https://aws-portfolio-chi.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Maintained by Prateek
+          </a>
+        </span>
+      </div>
+    </footer>
+
+    <script src="js/courses.js"></script>
+    <script src="js/app.js"></script>
+  </body>
 </html>
