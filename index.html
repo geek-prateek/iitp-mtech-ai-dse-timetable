@@ -16,7 +16,7 @@
       </a>
       <div class="hero-text">
         <p class="eyebrow">IIT Patna · CET PG</p>
-        <h1>M.Tech AI &amp; DSE</h1>
+        <h1 id="programTitle">M.Tech AI &amp; DSE</h1>
         <p class="subtitle">2026–27 · Semester 1</p>
       </div>
     </div>
@@ -66,15 +66,14 @@
 
     <section class="elective-panel">
       <div>
-        <p class="panel-label">Your elective</p>
-        <h3>Select one elective to personalize your timetable</h3>
-        <p class="muted">Regular courses are always shown. Your selected elective is highlighted.</p>
+        <p class="panel-label">Your Program & Elective</p>
+        <h3>Personalize your timetable</h3>
+        <p class="muted">Select your program and one elective. Regular courses are always shown.</p>
       </div>
-      <select id="electiveSelect" aria-label="Select your elective">
-        <option value="Computational Data Analysis">Computational Data Analysis</option>
-        <option value="Pattern Recognition">Pattern Recognition</option>
-        <option value="Advanced Machine Learning">Advanced Machine Learning</option>
-      </select>
+      <div class="selectors" style="display: flex; gap: 10px; flex-wrap: wrap;">
+        <select id="programSelect" aria-label="Select your program"></select>
+        <select id="electiveSelect" aria-label="Select your elective"></select>
+      </div>
     </section>
     <section class="table-wrap">
       <div class="timetable" id="timetable"></div>
@@ -94,7 +93,7 @@
 
   <footer>
     <div class="container footer-inner">
-      <span>IIT Patna · M.Tech AI &amp; DSE · 2026–27</span>
+      <span>IIT Patna · 2026–27</span>
       <span>
         <strong>NGVP</strong> ·
         <a

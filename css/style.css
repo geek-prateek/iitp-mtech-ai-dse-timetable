@@ -347,6 +347,11 @@ select {
 .today-item strong { display: block; font-size: 13px; }
 .today-item span { color: var(--muted); font-size: 12px; }
 
+.today-item.holiday {
+  border-color: #86efac;
+  background: #ecfdf5;
+}
+
 .table-wrap {
   overflow-x: auto;
   padding-bottom: 8px;
@@ -376,8 +381,16 @@ select {
   background: var(--blue);
 }
 
+.grid-head.holiday {
+  background: var(--green);
+}
+
 .time-head {
   background: #334155;
+}
+
+.time-head.gap {
+  background: #64748b;
 }
 
 .slot {
@@ -417,6 +430,23 @@ select {
 }
 
 .slot.empty:hover { transform: none; }
+
+.slot.gap {
+  min-height: 58px;
+  cursor: default;
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: none;
+}
+
+.slot.gap:hover {
+  transform: none;
+  box-shadow: none;
+}
 
 .slot.dimmed {
   opacity: .15;
@@ -543,7 +573,29 @@ select {
   box-shadow: none;
 }
 
+.slot.holiday {
+  background: #ecfdf5;
+  border: 1px dashed #22c55e;
+  color: var(--green);
+  cursor: default;
+}
+
+.slot.holiday:hover {
+  transform: none;
+  box-shadow: none;
+}
+
 .join-btn.alt { background: #8e24aa; }
+
+.join-btn.disabled {
+  background: #e2e8f0;
+  color: #64748b;
+  cursor: not-allowed;
+}
+
+.course-card.disabled {
+  background: #f8fafc;
+}
 
 .join-btn.recording {
   background: #0f766e;
