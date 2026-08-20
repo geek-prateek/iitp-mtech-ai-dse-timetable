@@ -16,7 +16,8 @@ const COURSES = [
     shortName: "Design & Analysis of Algorithms",
     code: "ECS 5101 / MCA20-303",
     type: "regular",
-    moodleUrl: "https://cetpgex.iitp.ac.in/moodle/course/view.php?id=731"
+    moodleUrl: "https://cetpgex.iitp.ac.in/moodle/course/view.php?id=731",
+    professor: "Dr. Rahul Mishra"
   },
   {
     id: "fcs",
@@ -24,7 +25,8 @@ const COURSES = [
     shortName: "Foundations of Computer Systems",
     code: "ECS 5102",
     type: "regular",
-    moodleUrl: "https://cetpgex.iitp.ac.in/moodle/course/view.php?id=732"
+    moodleUrl: "https://cetpgex.iitp.ac.in/moodle/course/view.php?id=732",
+    professor: "Mr. Sundar Doraiswami"
   },
   {
     id: "twss",
@@ -32,7 +34,8 @@ const COURSES = [
     shortName: "Technical Writing & Soft Skill",
     code: "EHS 5104",
     type: "regular",
-    moodleUrl: "https://cetpgex.iitp.ac.in/moodle/course/view.php?id=734"
+    moodleUrl: "https://cetpgex.iitp.ac.in/moodle/course/view.php?id=734",
+    professor: "Dr. Sweta Sinha"
   },
   {
     id: "ps",
@@ -40,7 +43,8 @@ const COURSES = [
     shortName: "Probability & Statistics",
     code: "EMC 5103",
     type: "regular",
-    moodleUrl: "https://cetpgex.iitp.ac.in/moodle/course/view.php?id=733"
+    moodleUrl: "https://cetpgex.iitp.ac.in/moodle/course/view.php?id=733",
+    professor: "Dr. Anuj Singh"
   },
   {
     id: "cda",
@@ -48,7 +52,8 @@ const COURSES = [
     shortName: "Computational Data Analysis",
     code: "EAI 6101 / ECS 6102",
     type: "elective",
-    moodleUrl: "https://cetpgex.iitp.ac.in/moodle/course/view.php?id=836"
+    moodleUrl: "https://cetpgex.iitp.ac.in/moodle/course/view.php?id=836",
+    professor: "Dr. Sudhir Kumar"
   },
   {
     id: "pr",
@@ -56,7 +61,8 @@ const COURSES = [
     shortName: "Pattern Recognition",
     code: "EAI 6102 / ECS 6303 / ESD 6102 / EAS 6102 / MCA20-E305F",
     type: "elective",
-    moodleUrl: "https://cetpgex.iitp.ac.in/moodle/course/view.php?id=836"
+    moodleUrl: "https://cetpgex.iitp.ac.in/moodle/course/view.php?id=836",
+    professor: "Dr. Rajib Kumar Jha"
   },
   {
     id: "aml",
@@ -64,7 +70,8 @@ const COURSES = [
     shortName: "Advanced Machine Learning",
     code: "EAI 6103 / EAS 6103",
     type: "elective",
-    moodleUrl: "https://cetpgex.iitp.ac.in/moodle/course/view.php?id=836"
+    moodleUrl: "https://cetpgex.iitp.ac.in/moodle/course/view.php?id=836",
+    professor: "Dr. Vivek Tiwari"
   }
 ];
 
@@ -72,7 +79,7 @@ const SCHEDULE = [
   { day:"Monday", time:"6:00 PM – 8:00 PM", course:"ps", lab:false, showLabTag:true },
 
   { day:"Tuesday", time:"5:00 PM – 6:30 PM", course:"twss", lab:false },
-  { day:"Tuesday", time:"7:30 PM – 9:00 PM", course:"aml", lab:false },
+  { day:"Tuesday", time:"6:30 PM – 8:00 PM", course:"aml", lab:false },
 
   { day:"Wednesday", time:"5:00 PM – 6:30 PM", course:"twss", lab:false },
   { day:"Wednesday", time:"7:00 PM – 8:30 PM", course:"ps", lab:true },
@@ -101,6 +108,7 @@ const TIMES = [
   "2:00 PM – 5:00 PM",
   "5:00 PM – 6:30 PM",
   "6:00 PM – 8:00 PM",
+  "6:30 PM – 8:00 PM",
   "7:00 PM – 8:30 PM",
   "7:30 PM – 9:00 PM",
   "7:30 PM – 9:30 PM"

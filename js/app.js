@@ -21,7 +21,6 @@ function effectiveCourse(scheduleItem) {
   if (scheduleItem.course !== "elective-slot") return getCourse(scheduleItem.course);
 
   if (selectedElective === "Computational Data Analysis") return getCourse("cda");
-  if (selectedElective === "Pattern Recognition") return getCourse("pr");
   return getCourse("aml");
 }
 
@@ -110,6 +109,7 @@ function renderTimetable() {
       slot.innerHTML = `
         <div class="slot-title">${course.shortName}</div>
         <div class="slot-code">${course.code}</div>
+        <div class="slot-prof">${course.professor}</div>
         <div class="slot-time">${item.time}</div>
         ${item.showLabTag ? '<span class="badge">Lab</span>' : ''}
       `;
@@ -135,6 +135,7 @@ function renderCourses() {
       <div class="course-type">${course.type === "regular" ? "Regular Course" : "Elective Course"}</div>
       <h3>${course.name}</h3>
       <div class="course-code">${course.code}</div>
+      <div class="course-prof">👨‍🏫 ${course.professor}</div>
       <div class="link-row">
         ${renderCourseLinks(course)}
       </div>
