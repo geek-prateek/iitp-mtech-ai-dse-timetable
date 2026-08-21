@@ -157,15 +157,18 @@ function updateHeaders() {
 function renderTimetable() {
   timetableEl.innerHTML = "";
   
-  // Calculate active times for the current program/elective
+  const program = PROGRAMS.find(p => p.id === selectedProgram);
+  const programElectives = program ? program.electives : [];
+  const isVisibleTimetableCourse = course => course.type === "regular" || programElectives.includes(course.id);
+
+  // Calculate active times for regular courses and all electives in the selected program.
   const activeTimes = new Set();
   
   SCHEDULE.forEach(item => {
     const course = getCourse(item.course);
     if (!course) return;
     
-    // Only consider courses that are regular or the currently selected elective
-    if (course.type === "regular" || course.id === selectedElective) {
+    if (isVisibleTimetableCourse(course)) {
       activeTimes.add(item.time);
     }
   });
@@ -228,24 +231,30 @@ function renderTimetable() {
         return;
       }
     
-      // Find a schedule item that matches the day, time, and is either regular or the selected elective
-      const item = SCHEDULE.find(s => s.day === day && s.time === row.time && (getCourse(s.course).type === "regular" || s.course === selectedElective));
+      const items = SCHEDULE
+        .filter(s => s.day === day && s.time === row.time)
+        .map(item => ({ item, course: getCourse(item.course) }))
+        .filter(({ course }) => course && isVisibleTimetableCourse(course));
     
-      if (!item) {
+      if (!items.length) {
         slot.className = "slot empty";
         slot.textContent = "—";
         timetableEl.appendChild(slot);
         return;
       }
 
-      const course = getCourse(item.course);
+      const selectedItem = items.find(({ course }) => course.id === selectedElective) || items[0];
+      const { item, course } = selectedItem;
       slot.className = `slot ${course.type} ${item.showLabTag ? "lab" : ""}`;
 
-      if (currentFilter !== "all" && course.type !== currentFilter) {
+      if (
+        (currentFilter !== "all" && course.type !== currentFilter) ||
+        (course.type === "elective" && course.id !== selectedElective)
+      ) {
         slot.classList.add("dimmed");
       }
 
-      if (course.type === "elective") {
+      if (course.type === "elective" && course.id === selectedElective) {
         slot.classList.add("selected-elective");
       }
 
@@ -258,7 +267,7 @@ function renderTimetable() {
       `;
 
       slot.addEventListener("click", () => {
-        const url = getMeetingUrl(course);
+        const url = getMeetingUrl(selectedItem.course);
         if (url) window.open(url, "_blank", "noopener,noreferrer");
       });
 
