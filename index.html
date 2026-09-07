@@ -23,9 +23,7 @@
   </header>
 
   <main class="container">
-    <div class="notification-banner">
-      Timings for Advance Machine Learning has been updated for Tuesday class
-    </div>
+    <div class="notification-banner" style="display: none;"></div>
     <section class="topbar">
       <div>
         <h2>Weekly Timetable</h2>
@@ -79,16 +77,59 @@
       <div class="timetable" id="timetable"></div>
     </section>
 
-    <section class="courses-section">
+    <section class="courses-section" id="courses">
       <div class="section-heading">
         <div>
-          <p class="panel-label">Quick Access</p>
-          <h2>Course Links</h2>
-          <p><i>Join via the Moodle links for attendance.</i></p>
+          <h2>Quick Access / Course Links</h2>
+          <p>Moodle meeting links, materials, and syllabus.</p>
         </div>
       </div>
       <div class="course-grid" id="courseGrid"></div>
     </section>
+
+    <!-- NEW RESOURCE HUB -->
+    <section class="courses-section" id="resourceHub" style="margin-top: 48px;">
+      <div class="section-heading">
+        <div>
+          <h2>Resource Hub</h2>
+          <p>Community-shared links, repos, notes, and study materials</p>
+        </div>
+        <button id="addResourceBtn" class="btn primary" style="padding: 12px 18px;">+ Add Resource</button>
+      </div>
+
+      <div id="resourceFormContainer" style="display: none; margin-top: 20px; padding: 24px; background: var(--surface); border: 1px solid var(--blue-border); border-radius: 16px; box-shadow: var(--shadow);">
+         <h3 style="margin: 0 0 16px;">Share a Resource</h3>
+         <form id="resourceForm" style="display: flex; flex-direction: column; gap: 14px;">
+            <input type="text" id="resTitle" placeholder="Resource Title (e.g. DAA Complete Notes)" required style="padding: 12px; border: 1px solid var(--border); border-radius: 10px; font-size: 14px;">
+            <input type="url" id="resUrl" placeholder="Link URL (https://...)" required style="padding: 12px; border: 1px solid var(--border); border-radius: 10px; font-size: 14px;">
+            
+            <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+              <select id="resType" required style="flex: 1; padding: 12px; border: 1px solid var(--border); border-radius: 10px; font-size: 14px; min-width: 150px;">
+                <option value="Note">📝 Note</option>
+                <option value="Video">📺 Video</option>
+                <option value="Repo">💻 Repo</option>
+                <option value="Book">📖 Book</option>
+                <option value="Other">🔗 Other</option>
+              </select>
+              <select id="resSubject" required style="flex: 1; padding: 12px; border: 1px solid var(--border); border-radius: 10px; font-size: 14px; min-width: 150px;">
+                <option value="" disabled selected>Select Subject...</option>
+                <option value="General">General / Other</option>
+              </select>
+              <input type="text" id="resAddedBy" placeholder="Your Name (optional)" style="flex: 1; padding: 12px; border: 1px solid var(--border); border-radius: 10px; font-size: 14px; min-width: 150px;">
+            </div>
+            
+            <div style="display: flex; gap: 12px; justify-content: flex-end; margin-top: 8px;">
+              <button type="button" class="btn" onclick="document.getElementById('resourceFormContainer').style.display='none'">Cancel</button>
+              <button type="submit" class="btn primary" id="resSubmitBtn">Submit Resource</button>
+            </div>
+         </form>
+      </div>
+
+      <div class="course-grid" id="resourceGrid" style="margin-top: 24px;">
+         <p class="muted">Loading resources...</p>
+      </div>
+    </section>
+
   </main>
 
   <footer>
@@ -107,6 +148,16 @@
       </span>
     </div>
   </footer>
+
+  <dialog id="assignmentModal" class="modal">
+    <div class="modal-header">
+      <h3 id="assignmentModalTitle">Assignments</h3>
+      <button class="modal-close" onclick="document.getElementById('assignmentModal').close()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <ul id="assignmentModalList" class="assignment-list"></ul>
+    </div>
+  </dialog>
 
   <script src="js/courses.js"></script>
   <script src="js/app.js"></script>
