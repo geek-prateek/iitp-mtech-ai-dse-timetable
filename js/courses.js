@@ -1,4 +1,4 @@
-const IMPORTANT_LINKS = [
+let IMPORTANT_LINKS = [
   { label: "Academic Calendar", icon: "📅", url: "https://cetpgex.iitp.ac.in/images/pdf/Academic%20Calendar/AC%20PG%20Autumn%2026.pdf" },
   { label: "Time Table", icon: "🕐", url: "https://cetpgex.iitp.ac.in/index.php/academics/time-table" },
   { label: "Course Details", icon: "📖", url: "https://cetpgex.iitp.ac.in/index.php/academics/course-details" },
@@ -9,7 +9,9 @@ const IMPORTANT_LINKS = [
   { label: "Support", icon: "🙋", url: "https://cetpgex.iitp.ac.in/index.php/moodle-support" }
 ];
 
-const HOLIDAYS = [
+let NOTIFICATION = "Timings for Advance Machine Learning has been updated for Tuesday class";
+
+let HOLIDAYS = [
   { date: "2026-01-26", name: "Republic Day" },
   { date: "2026-03-04", name: "Holi" },
   { date: "2026-03-21", name: "Idu'l Fitr" },
@@ -29,7 +31,7 @@ const HOLIDAYS = [
   { date: "2026-12-25", name: "Christmas Day" }
 ];
 
-const PROGRAMS = [
+let PROGRAMS = [
   {
     id: "mtech-ai-dse",
     name: "M.Tech in AI & DSE",
@@ -68,7 +70,7 @@ const PROGRAMS = [
   }
 ];
 
-const COURSES = [
+let COURSES = [
   // Regular
   {
     id: "daa",
@@ -226,7 +228,7 @@ const COURSES = [
   }
 ];
 
-const SCHEDULE = [
+let SCHEDULE = [
   // Regular
   { day:"Monday", time:"6:00 PM – 8:00 PM", course:"ps", lab:false, showLabTag:true },
   { day:"Tuesday", time:"5:00 PM – 6:30 PM", course:"twss", lab:false },
@@ -257,9 +259,9 @@ const SCHEDULE = [
   { day:"Sunday", time:"5:30 PM – 7:00 PM", course:"acc", lab:false }
 ];
 
-const DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+let DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
-const TIMES = [
+let TIMES = [
   "8:00 AM – 9:30 AM",
   "9:30 AM – 11:00 AM",
   "10:00 AM – 11:30 AM",
