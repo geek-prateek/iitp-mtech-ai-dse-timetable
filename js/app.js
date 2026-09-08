@@ -407,8 +407,8 @@ function renderToday() {
 function renderNotification() {
   const banner = document.querySelector(".notification-banner");
   if (!banner) return;
-  if (window.NOTIFICATION && window.NOTIFICATION.trim() !== "") {
-    banner.textContent = window.NOTIFICATION;
+  if (NOTIFICATION && NOTIFICATION.trim() !== "") {
+    banner.textContent = NOTIFICATION;
     banner.style.display = "flex";
   } else {
     banner.style.display = "none";
@@ -559,13 +559,13 @@ async function initApp() {
     const res = await fetch("https://iitp-timetable-admin-eight.vercel.app/api/timetable", { cache: "no-store" });
     if (res.ok) {
       const dynamicData = await res.json();
-      window.PROGRAMS = dynamicData.PROGRAMS || PROGRAMS;
-      window.COURSES = dynamicData.COURSES || COURSES;
-      window.SCHEDULE = dynamicData.SCHEDULE || SCHEDULE;
-      window.DAYS = dynamicData.DAYS || DAYS;
-      window.TIMES = dynamicData.TIMES || TIMES;
-      window.HOLIDAYS = dynamicData.HOLIDAYS || HOLIDAYS;
-      window.NOTIFICATION = dynamicData.notification || "";
+      PROGRAMS = dynamicData.PROGRAMS || PROGRAMS;
+      COURSES = dynamicData.COURSES || COURSES;
+      SCHEDULE = dynamicData.SCHEDULE || SCHEDULE;
+      DAYS = dynamicData.DAYS || DAYS;
+      TIMES = dynamicData.TIMES || TIMES;
+      HOLIDAYS = dynamicData.HOLIDAYS || HOLIDAYS;
+      NOTIFICATION = dynamicData.notification || "";
       window.ASSIGNMENTS = dynamicData.ASSIGNMENTS || [];
     }
   } catch (error) {
