@@ -417,7 +417,7 @@ function renderNotification() {
 
 async function fetchResources() {
   try {
-    const res = await fetch("https://iitp-timetable-admin-eight.vercel.app/api/resources");
+    const res = await fetch("https://iitp-timetable-admin-eight.vercel.app/api/resources", { cache: "no-store" });
     if (res.ok) {
       RESOURCES = await res.json();
       renderResources();
@@ -556,7 +556,7 @@ document.querySelector('[data-filter="all"]').classList.add("active");
 
 async function initApp() {
   try {
-    const res = await fetch("https://iitp-timetable-admin-eight.vercel.app/api/timetable");
+    const res = await fetch("https://iitp-timetable-admin-eight.vercel.app/api/timetable", { cache: "no-store" });
     if (res.ok) {
       const dynamicData = await res.json();
       window.PROGRAMS = dynamicData.PROGRAMS || PROGRAMS;
