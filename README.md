@@ -1,44 +1,107 @@
-# IIT Patna — M.Tech AI & DSE Timetable
+# IIT Patna — CET PG Timetable & Resource Hub
 
-Public timetable dashboard for the IIT Patna M.Tech 2026–27 batch, Specialization in Artificial Intelligence & Data Science and Engineering (AI & DSE), Semester 1.
+[![Live Web App](https://img.shields.io/badge/Web_App-Live_Deployment-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://iitp-mtech-ai-dse-timetable.vercel.app/)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
 
-## Features
+A centralized timetable and academic resource platform built for the **IIT Patna CET PG 2026–27 batch**, supporting multiple M.Tech and M.S. programmes including **AI & DSE, Computer Science & Engineering, Cloud Computing, Blockchain Technology & Big Data, and related programmes**.
 
-- Weekly timetable from Monday to Sunday
-- Light blue for regular courses
-- Light yellow for elective courses
-- One-click Microsoft Teams links
-- Separate class/lab links where available
-- Elective selector with localStorage persistence
-- Today view
-- Regular / elective filters
-- Responsive mobile layout
-- No backend required
+Designed to simplify schedule management, consolidate academic resources, reduce fragmented links, and provide direct access to Microsoft Teams, Moodle, course materials, and other academic resources.
 
-## Run locally
+---
 
-Open `index.html` in a browser.
+## ✨ Features
 
-## Deploy with GitHub Pages
+- **Interactive Timetable:** Weekly class schedules with support for regular courses, electives, labs, and direct meeting/lab links.
+- **🎓 Multi-Program Support:** Program-specific timetables for multiple IIT Patna CET PG programmes, including M.Tech AI & DSE, M.Tech CSE, M.Tech Cloud Computing, M.Tech Blockchain Technology & Big Data, and M.S. programmes.
+- **📚 Resource Hub:** Subject-wise access to community-shared notes, reference materials, useful GitHub repositories, Google Drive links, and other study resources.
+- **🔗 Course Links:** Quick access to Moodle, Microsoft Teams, course materials, syllabi, and other academic links.
+- **📝 Assignment Tracker:** Track upcoming assignment deadlines and pending deliverables by course.
+- **📊 Attendance Tracker:** Client-side `+` / `-` attendance tracking stored locally in the browser.
+- **🔔 Schedule Updates:** Important timetable updates, schedule changes, and class cancellations are highlighted for students.
+- **🎨 Course Mapping:** Visual distinction between Regular and Elective courses with dedicated course color-coding.
+- **🎯 Program & Elective Selection:** Personalize the timetable by selecting your programme and preferred elective.
+- **💾 State Persistence:** Elective preferences, attendance data, and user settings persist using `localStorage`.
+- **📱 Responsive UI:** Lightweight, responsive interface designed for both mobile and desktop browsers.
+- **⚡ Zero Backend:** Static architecture with no application server or database dependency.
 
-1. Create a public GitHub repository.
-2. Upload all files and folders from this project.
-3. Go to **Settings → Pages**.
-4. Under **Build and deployment**, choose **Deploy from a branch**.
-5. Select `main` and `/ (root)`.
-6. Save.
-7. GitHub will provide the public Pages URL.
+---
 
-## Updating the timetable
+## ❤️ Wall of Love & Community Impact
 
-Edit:
+What started as a personal utility was subsequently adopted by students across IIT Patna student groups, with users providing feedback, feature requests, and suggestions for further improvements.
 
-`js/courses.js`
+> *"Impressed to see the your website for our MTech Programe"*
+> — **Chandan Sharma**
 
-The `COURSES` array contains course information and Teams links.
+> *"It's very useful for us to look into the agenda. You made everything easy! thanks a lot!"*
+> — **Varshh ♚**
 
-The `SCHEDULE` array contains day, time, course and lab information.
+> *"Appreciate your work Prateek, it is very helpful. Thank you very much. 🙏"*
+> — **Ch. hanumanprasad**
 
-## Important
+> *"Thanks Prateek! This is really helpful."*
+> — **Kashif**
 
-This timetable is based on the class schedule and Teams links supplied for the project. Verify any timetable changes with the official IIT Patna academic/class communication before relying on them.
+> *"I refer your link first daily to keep track of lectures... very useful ..thanks for yr time and efforts..."*
+> *"I have shared prateek work in other group ..they are loving it there..."*
+> — **Dr. Abhijit Singh**
+
+> *"Super Thanks a Lot, for all of us!"*
+> — **SV**
+
+> *"We really appreciate your effort, Prateek. 👏"*  
+> — **RJ**
+
+> *"Awesome very useful. Thanks for the great work 🙂"*  
+> — **Sanjeev**
+
+---
+
+## 👥 Community Contributions
+
+The project has also inspired community-built extensions:
+
+- **Android Companion App:** Independently developed and maintained by **RajKisan**, extending the platform with native Android features such as class notifications and mobile access.
+
+---
+
+## 👏 Acknowledgments
+
+Special thanks to the IIT Patna M.Tech community for the feedback, feature suggestions, testing, and encouragement that helped shape and improve the platform.
+
+This includes suggestions around attendance tracking, faculty mappings, timetable improvements, resources, and other community-driven enhancements.
+
+---
+
+## 🚀 Usage & Deployment
+
+### Run Locally
+
+Open `index.html` in a modern web browser.
+
+### Deploy with Vercel or GitHub Pages
+
+1. Push the repository to GitHub.
+2. For **GitHub Pages**, go to **Settings → Pages** and deploy from the `main` branch.
+3. For **Vercel**, import the repository and deploy.
+
+---
+
+## ⚙️ Updating the Timetable
+
+Timetable and course configuration are maintained in modular JavaScript files.
+
+Edit `js/courses.js`:
+
+- `COURSES` — course names, faculty mappings, meeting links, and course information.
+- `SCHEDULE` — days, time slots, course IDs, and lab details.
+
+Programme-specific configurations can be extended as additional IIT Patna CET PG programmes are added.
+
+---
+
+## ⚠️ Disclaimer
+
+Timetable information, meeting links, and course resources are compiled from schedules and information shared through student communication channels. Some information may change without notice.
+
+Always verify schedule changes, course information, and official announcements with **IIT Patna academic communications** before relying on the information provided by this platform.
